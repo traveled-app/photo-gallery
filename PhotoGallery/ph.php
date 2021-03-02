@@ -17,9 +17,10 @@ GLOBAL $imageList;
 
 init();
 showPhoto($al, $iQuery, $imageList);
-showNextPhoto($al, $iQuery, $imageList);
-showAlbum($al, $iQuery, $imageList);
-showFooter();
+//showNextPhoto($al, $iQuery, $imageList);
+//showAlbum($al, $iQuery, $imageList);
+showBack();
+//showFooter();
 
 // Functions
 
@@ -36,28 +37,72 @@ function init() {
 		$imageList = getImageList($al);
 }
 
+function calcStyle($w, $h) {
+	$style = '"width:100%;object-fit:cover;"';
+	if ($h > 0) {
+		$ratio = $w/$h;
+		if ($ratio < 0.3) {
+			// tall
+			$style = '"width:70%;object-fit:cover;"';
+		}
+		if ($ratio < 0.7) {
+			// tall
+			$style = '"width:170%;object-fit:cover;"';
+		}
+		//
+		else if ($ratio > 4) {
+			// wide
+			$style = '"height:30%;object-fit:cover;"';
+		}
+		else if ($ratio > 3) {
+			// wide
+			$style = '"height:50%;object-fit:cover;"';
+		}
+		else if ($ratio > 1.7) {
+			// wide
+			$style = '"height:70%;object-fit:cover;"';
+		}
+		else if ($ratio > 0.7) {
+			// tallish
+			$style = '"height:80%;object-fit:cover;"';
+		}
+		else {
+		}
+	}
+
+	return $style;
+}
+
 // Show photo at full resolution.  On tap, back up browser.
 
 function showPhoto($al, $iQuery, $imageList) {
-
+	//echo('<p style="padding-left:0px">');
 	$src = 'ph.php?al='.$al.'&i='.$iQuery;
 	$href = 'javascript:history.back(1)';
-
 	echo('<a href="' . $href . '">');
 	$photoSrc = Constants::ALBUM_DIR.'/'.$al.'/'.$imageList[$iQuery];
-	$style = 'style="width:100%;object-fit:cover;padding-top:10px"';
-	echo('<img '.$style.' src="' . $photoSrc . '"/>');
+	$size = getimagesize ( $photoSrc );
+	if ($size) {
+		$style = calcStyle($size[0], $size[1]);
+		echo('<img style='.$style.' src="' . $photoSrc . '"/>');
+	}
 	echo('</a>');
+	//echo('</p>');
 
 	echo('<p style="padding-left:10px;padding-top:30px">');
-	echo('<sup style="color:lightgray;">'.$imageList[$iQuery].'</sup><br/>');
-	$size = getimagesize ( $photoSrc );
+	echo('<sup style="color:gray;">'.$imageList[$iQuery].'</sup><br/>');
 	if ($size) {
 		$width = $size[0];
 		$height = $size[1];
-		echo('<sup style="color:lightgray;">'.$width.'x'.$height.'</sup>');
+		echo('<sup style="color:lightgray;">'.$width.'x'.$height.' '.(string)($width/$height).'</sup>');
 	}
 	echo('</p>');
+}
+
+function showBack() {
+	$href = 'javascript:history.back(1)';
+	$style='"color:gray;text-align:left;padding-left: 10px"';
+	echo( '<h5 style='.$style.'><a href='.$href.' style="color:gray;">Back</a></h5>');
 }
 
 function showAlbum($al, $iQuery) {
