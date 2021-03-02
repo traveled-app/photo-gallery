@@ -3,8 +3,7 @@
 // Global variables
 
 Class Constants {
-	const VER = 3.14;
-	const ALBUM_DIR = "../al";
+	const ALBUM_DIR = "al";
 	const IMG_WIDTH_SM = 200;
 	const IMG_WIDTH_MD = 300;
 }
