@@ -1,7 +1,7 @@
 <html>
 <head>
 </head>
-<body style="background-color:white;">
+<body style="background-color:black;">
 <meta name="HandheldFriendly" content="true" />
 <meta name="MobileOptimized" content="320" />
 
@@ -97,7 +97,7 @@ function showPhoto($al, $iQuery, $imageList) {
 	if ($size) {
 		$width = $size[0];
 		$height = $size[1];
-		echo('<sup style="color:lightgray;">'.$width.'x'.$height.' '.(string)($width/$height).'</sup>');
+		echo('<sup style="color:gray;">'.$width.'x'.$height.'</sup>');
 	}
 	echo('</p>');
 }
