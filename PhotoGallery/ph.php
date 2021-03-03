@@ -1,7 +1,29 @@
 <html>
 <head>
+<style>
+body {
+  background-color: black;
+  color:white;
+}
+table {
+  color:white;
+}
+sup {
+  color:gray;
+}
+a {
+  color:lightgray;
+  font-family: system-ui, sans-serif;
+  font-size: 14px;
+}
+p {
+  color:lightgray;
+  font-family: verdana;
+  font-size: 18px;
+}
+</style>
 </head>
-<body style="background-color:black;">
+<body>
 <meta name="HandheldFriendly" content="true" />
 <meta name="MobileOptimized" content="320" />
 
@@ -9,7 +31,7 @@
 //<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
 //<meta name="viewport" content="width=device-width, initial-scale=.5, maximum-scale=12.0, minimum-scale=.25, user-scalable=yes"/>
 
-require "log.php";
+//require "log.php";
 require "config.php";
 
 // Main entry point
@@ -93,26 +115,26 @@ function showPhoto($al, $iQuery, $imageList) {
 	//echo('</p>');
 
 	echo('<p style="padding-left:10px;padding-top:30px">');
-	echo('<sup style="color:gray;">'.$imageList[$iQuery].'</sup><br/>');
+	echo('<sup>'.$imageList[$iQuery].'</sup><br/>');
 	if ($size) {
 		$width = $size[0];
 		$height = $size[1];
-		echo('<sup style="color:gray;">'.$width.'x'.$height.'</sup>');
+		echo('<sup>'.$width.'x'.$height.'</sup>');
 	}
 	echo('</p>');
 }
 
 function showBack() {
 	$href = 'javascript:history.back(1)';
-	$style='"color:gray;text-align:left;padding-left: 10px"';
-	echo( '<h5 style='.$style.'><a href='.$href.' style="color:gray;">Back</a></h5>');
+	$style='"text-align:left;padding-left: 10px"';
+	echo( '<h5 style='.$style.'><a href='.$href.'>Back</a></h5>');
 }
 
 function showAlbum($al, $iQuery) {
 	$href = 'al.php?al='.$al;
 	$href = '"'.$href.'"';
-	$style='"color:lightgray;text-align:right;padding-right: 30px"';
-	echo( '<h5 style='.$style.'><a href='.$href.' style="color:lightgray;text-align:right">Album</a></h5>');
+	$style='"text-align:right;padding-right: 30px"';
+	echo( '<h5 style='.$style.'><a href='.$href.' style="text-align:right">Album</a></h5>');
 }
 
 function showNextPhoto($al, $iQuery, $imageList) {
@@ -131,7 +153,7 @@ function showNextPhoto($al, $iQuery, $imageList) {
 }
 
 function showFooter() {
-	$style = 'width:100%;color:lightgray;padding-left:8px;padding-right:28px;padding-top:10';
+	$style = 'width:100%;padding-left:8px;padding-right:28px;padding-top:10';
 	echo('<table style='.$style.'>');
 	echo('<tr>');
 	echo('<td><sup>📸</sup></td>');
@@ -140,6 +162,7 @@ function showFooter() {
 	echo('</table>');
 }
 
+require "log.php";
 ?>
 </body>
 </html>
