@@ -1,7 +1,7 @@
 <html>
 <head>
 </head>
-<body style="background-color:black;">
+<body style="background-color:white;">
 <meta name="HandheldFriendly" content="true" />
 <meta name="MobileOptimized" content="320" />
 //<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
@@ -9,6 +9,7 @@
 
 
 <?
+require "log.php";
 require "config.php";
 
 // Main entry point
