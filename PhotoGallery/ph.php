@@ -4,11 +4,11 @@
 <body style="background-color:white;">
 <meta name="HandheldFriendly" content="true" />
 <meta name="MobileOptimized" content="320" />
+
+<?
 //<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
 //<meta name="viewport" content="width=device-width, initial-scale=.5, maximum-scale=12.0, minimum-scale=.25, user-scalable=yes"/>
 
-
-<?
 require "log.php";
 require "config.php";
 
@@ -81,7 +81,7 @@ function showPhoto($al, $iQuery, $imageList) {
 	//echo('<p style="padding-left:0px">');
 	$src = 'ph.php?al='.$al.'&i='.$iQuery;
 	$href = 'javascript:history.back(1)';
-	echo('<a href="' . $href . '">');
+	echo('<a href="'.$href.'">');
 	$photoSrc = Constants::ALBUM_DIR.'/'.$al.'/'.$imageList[$iQuery];
 	$size = getimagesize ( $photoSrc );
 	if ($size) {
@@ -111,7 +111,6 @@ function showBack() {
 function showAlbum($al, $iQuery) {
 	$href = 'al.php?al='.$al;
 	$href = '"'.$href.'"';
-	//$href = 'javascript:history.back(1)';
 	$style='"color:lightgray;text-align:right;padding-right: 30px"';
 	echo( '<h5 style='.$style.'><a href='.$href.' style="color:lightgray;text-align:right">Album</a></h5>');
 }
