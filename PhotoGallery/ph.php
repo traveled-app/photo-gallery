@@ -4,7 +4,9 @@
 <body style="background-color:black;">
 <meta name="HandheldFriendly" content="true" />
 <meta name="MobileOptimized" content="320" />
-<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
+//<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
+//<meta name="viewport" content="width=device-width, initial-scale=.5, maximum-scale=12.0, minimum-scale=.25, user-scalable=yes"/>
+
 
 <?
 require "config.php";
@@ -69,7 +71,6 @@ function calcStyle($w, $h) {
 		else {
 		}
 	}
-
 	return $style;
 }
 
@@ -85,6 +86,7 @@ function showPhoto($al, $iQuery, $imageList) {
 	if ($size) {
 		$style = calcStyle($size[0], $size[1]);
 		echo('<img style='.$style.' src="' . $photoSrc . '"/>');
+		//echo('<img src="' . $photoSrc . '"/>');
 	}
 	echo('</a>');
 	//echo('</p>');
