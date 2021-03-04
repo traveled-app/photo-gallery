@@ -20,7 +20,7 @@ class MyConfig {
 			$this->queryUrl = parse_url($_SERVER['REQUEST_URI'], PHP_URL_QUERY);
 			parse_str($this->queryUrl, $this->queryDict);
 		}
-		$this->db = initDB("test.db");
+		$this->db = initDB("dt/db/test.db");
 	}
 }
 
