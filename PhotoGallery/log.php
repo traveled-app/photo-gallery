@@ -4,8 +4,7 @@
 
 $cfg = new MyConfig();
 insertRow($cfg);
-writeLogFile($cfg->queryDict);
-//selectRows($cfg->db);
+writeLogFile($cfg);
 $cfg->db->close();
 
 // Classes 
@@ -14,26 +13,28 @@ class MyConfig {
 	public $queryUrl = "";
 	public $queryDict = "";
 	public $db = 0;
+	public $logfile = "dt/lg/applog.txt";
 
 	function __construct() {
 		if (!empty($_SERVER)) {
 			$this->queryUrl = parse_url($_SERVER['REQUEST_URI'], PHP_URL_QUERY);
 			parse_str($this->queryUrl, $this->queryDict);
 		}
-		$this->db = initDB();
+		$this->db = initDB("test.db");
 	}
 }
 
 // Functions
 
-function writeLogFile($queryDict) {
+function writeLogFile($cfg) {
+	$queryDict = $cfg->queryDict;
 	$queryDict["log_time"] = $_SERVER["REQUEST_TIME"];
 	$queryDict["log_raddr"] = $_SERVER["REMOTE_ADDR"];
 	$queryDict["log_ua"] = $_SERVER["HTTP_USER_AGENT"];
 	// json encode
 	$json = (json_encode($queryDict));
 	// append to log file
-	$logfile = "applog.txt";
+	$logfile = $cfg->logfile; //"applog.txt";
 	$size = filesize($logfile);
 	if ($size < 1024*1024) {
 		$fp = fopen($logfile, 'a');
@@ -48,13 +49,14 @@ function writeLogFile($queryDict) {
 // Database
 
 class MyDB extends SQLite3 {
-   function __construct() {
-      $this->open('test.db');
+   function __construct($dbName) {
+      //$this->open('test.db');
+      $this->open($dbName);
    }
 }
 
-function initDB() {
-	$db = new MyDB();
+function initDB($dbName) {
+	$db = new MyDB($dbName);
 	if(!$db) {
 	   // echo $db->lastErrorMsg();
 	}
@@ -92,6 +94,7 @@ EOF;
    }
 }
 
+/*
 function selectRows($db) {
    $sql =<<<EOF
       SELECT * from CLIENTLOG;
@@ -105,5 +108,6 @@ EOF;
    }
    echo "Operation done successfully\n";
 }
+*/
 
 ?>

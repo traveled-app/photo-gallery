@@ -1,7 +1,28 @@
 <html>
 <head>
+<style>
+body {
+  background-color: black;
+  color:white;
+}
+table {
+  color:white;
+}
+sup {
+  color:gray;
+}
+a {
+  color:lightgray;
+  font-size: 13px;
+}
+p {
+  color:lightgray;
+  font-family: verdana;
+  font-size: 18px;
+}
+</style>
 </head>
-<body style="background-color:black;">
+<body>
 <meta name="HandheldFriendly" content="true" />
 <meta name="MobileOptimized" content="320" />
 <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
@@ -50,7 +71,7 @@ function init() {
 }
 
 function showThumbnail($filename, $imgnum) {
-	echo('<p style="color:lightgray;text-align:center;padding-top: 50px;">');
+	echo('<p style="text-align:center;padding-top: 50px;">');
 	// link to photo view page
 	GLOBAL $albumName;
 	$src = 'ph.php?al='.$albumName.'&i='.$imgnum;
@@ -64,7 +85,7 @@ function showThumbnail($filename, $imgnum) {
 }
 
 function showHeader($al) {
-	$style = '"color:lightgray;text-align:center;padding-top:50px;"';
+	$style = '"text-align:center;padding-top:50px;"';
 	echo('<h3 style='.$style.'>"'.$al.'"</h3>');
 }
 function showCounter($i, $n, $fileList) {
@@ -108,8 +129,8 @@ function showNextBatch() {
 		echo('<p>Underflow Batch</p>');
 		return;
 	}
-	echo('<h5 style="color:lightgray;text-align:right;padding-right: 30px">');
-	echo('<a href="'.$href.'" style="color:lightgray">Next ></a>');
+	echo('<h5 style="text-align:right;padding-right: 30px">');
+	echo('<a href="'.$href.'">Next ></a>');
 	echo('</h5>');
 }
 
@@ -117,8 +138,8 @@ function showAlbum($al) {
 	$href = 'al.php?al='.$al;
 	$href = '"'.$href.'"';
 	//$href = 'javascript:history.back(1)';
-	$style='"color:lightgray;text-align:right;padding-right: 30px"';
-	echo( '<h5 style='.$style.'><a href='.$href.' style="color:lightgray;text-align:right">Album</a></h5>');
+	$style='"text-align:right;padding-right: 30px"';
+	echo( '<h5 style='.$style.'><a href='.$href.' style="text-align:right">Album</a></h5>');
 }
 
 /*
@@ -130,7 +151,7 @@ function showNextAlbum() {
 function footer() {
 	GLOBAL $showHome;
 	echo($showHome);
-	$style = 'width:100%;color:lightgray;padding-left:8px;padding-right:28px;padding-top:10';
+	$style = 'width:100%;padding-left:8px;padding-right:28px;padding-top:10';
 	echo('<table style='.$style.'>');
 	echo('<tr>');
 	echo('<td><sup>📸</sup></td>');
